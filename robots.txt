@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /archives
+
+Disallow: /fonts/
+Disallow: /vendors/
+
+Sitemap: http://www.xgeeek.com/sitemap.xml
+Sitemap: http://www.xgeeek.com/baidusitemap.xml
