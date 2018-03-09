@@ -96,14 +96,13 @@
 
 <meta name="description" content="梅花香自苦寒来！">
 <meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://www.xgeeek.com/tags/index.html">
+<meta property="og:title" content="xgeeek">
+<meta property="og:url" content="http://www.xgeeek.com/index.html">
 <meta property="og:site_name" content="xgeeek">
 <meta property="og:description" content="梅花香自苦寒来！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-08T07:35:23.148Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="xgeeek">
 <meta name="twitter:description" content="梅花香自苦寒来！">
 
 
@@ -133,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://www.xgeeek.com/tags/"/>
+  <link rel="canonical" href="http://www.xgeeek.com/"/>
 
 
 
 
 
-  <title>tags | xgeeek</title>
+  <title> xgeeek - xgeeek - 梅花香自苦寒来！ </title>
   
 
 
@@ -174,7 +173,9 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -277,44 +278,166 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
 
-  <div id="posts" class="posts-expand">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.xgeeek.com/2018/03/09/static、volatile、synchronize/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xgeeek">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/head_img.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xgeeek">
+    </span>
+
     
-    
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 1 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/thread/" style="font-size: 12px; color: #ccc">thread</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/09/static、volatile、synchronize/" itemprop="url">static、volatile、synchronize</a></h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-09T10:29:08+08:00">
+                2018-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        
+          
+            <h3 id="1、原子性和可见性"><a href="#1、原子性和可见性" class="headerlink" title="1、原子性和可见性"></a>1、原子性和可见性</h3><p>原子性（排他性）：不论是多核还是单核，具有原子性的量，同一时刻只能有一个线程来对它进行操作！<br>可见性：多个线程对同一份数据操作，thread1改变了某个变量的值，要保证thread2能看见这个值被改变了。  </p>
+<h3 id="2、static理解"><a href="#2、static理解" class="headerlink" title="2、static理解"></a>2、static理解</h3><p>静态的，在程序执行的时候，就已经加载或执行。<br>可修饰方法、变量、代码块。<br>静态方法不能引用非静态的变量和方法。因为非静态的方法和变量只有在具体的实例存在才会相应的加载。  </p>
+<p>同时被static修饰的成员变量和成员方法是独立于该类的，它不依赖于某个特定的实例变量，也就是说它被该类的所有实例共享。所有实例的引用都指向同一个地方，任何一个实例对其的修改都会导致其他实例的变化。每个实例指向的都是同一个堆地址区域，修改的都是同一块内存。保证了变量在该类所有的实例中的唯一性。  </p>
+<p><strong>static为什么不能保证线程安全？？？</strong><br>每个线程运行时都有一个线程栈，线程栈保存了线程运行时候变量值信息。当线程访问某一个对象时候值的时候，首先通过对象的引用找到对应在堆内存的变量的值，然后把堆内存变量的具体值load到线程本地内存中，建立一个变量副本，之后线程就不再和对象在堆内存变量值有任何关系，而是直接修改副本变量的值，在修改完之后的某一个时刻（线程退出之前），自动把线程变量副本的值回写到对象在堆中变量。这样在堆中的对象的值就产生变化了。</p>
+<p><img src="http://images.cnblogs.com/cnblogs_com/aigongsi/201204/201204011757234696.jpg" alt="变量一次写操作过程"><br>图片摘自：<a href="http://www.cnblogs.com/shangxiaofei/p/5564340.html" target="_blank" rel="noopener">http://www.cnblogs.com/shangxiaofei/p/5564340.html</a></p>
+<p>这样就会导致多线程带来的问题，多个线程都从主内存私有拷贝变量到自己的工作区，a线程改变了var1的值，进行+1操作，还没写回到主内存。b线程这时看到自己的工作区中的var1值没变。这就是多线程带来的问题。  </p>
+<p>那么如何保证变量在多线程中的安全？（有人说可以声明为final类型，但是这样就是常量了。）</p>
+<h3 id="3、volatile"><a href="#3、volatile" class="headerlink" title="3、volatile"></a>3、volatile</h3><p>volatile,声明这个字段易变（可能被多个线程使用），Java内存模型负责各个线程的工作区与主存区的该字段的值保持同步，即一致性。<br> volatile禁止编译器对成员变量进行优化，被volatile声明的变量，多个线程在操作的时候，每改变其值的时候，jvm都强行要求其立刻写回主内存。每次使用其值的时候，都要求其从主内存重新拷贝。这样就保证了操作的可见性，但是并不能保证操作的原子性，多个线程仍然可以对其进行同时操作。在某种情况下，volatile还是不能保证线程的安全。<br>那么如何保证多线程的安全？</p>
+<h3 id="4、synchronize"><a href="#4、synchronize" class="headerlink" title="4、synchronize"></a>4、synchronize</h3><p>建议看此篇<br><a href="http://www.cnblogs.com/GnagWang/archive/2011/02/27/1966606.html" target="_blank" rel="noopener">http://www.cnblogs.com/GnagWang/archive/2011/02/27/1966606.html</a></p>
+<h3 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h3><p>static只是声明变量在主存上的唯一性，不能保证工作区与主存区变量值的一致性；除非变量的值是不可变的，即再加上final的修饰符，否则static声明的变量，不是线程安全的。<br>volatile同步机制不同于synchronized,前者是内存同步，后者不仅包含内存同步（一致性），且保证线程互斥（互斥性）。<br>synchronized：其实就像加了锁一样，只能等待这个线程操作完变量，并且把变量值同步到堆（主内存后），释放锁；然后其他线程才可以读写。<br>ReentrantLock：ReentrantLock多了锁投票，定时锁等候，中断锁等候；synchronized锁不能被打断；竞争激烈的时候，使用此锁，效率更高些。</p>
+
+          
+        
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      <div>
+      
+	  </div>
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
 
 
           </div>
@@ -322,12 +445,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDY3OS8xMTIxNg=="></div>
-    
-  </div>
-
         </div>
         
           
