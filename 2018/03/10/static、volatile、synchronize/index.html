@@ -102,12 +102,12 @@
 <meta property="og:site_name" content="xgeeek">
 <meta property="og:description" content="原子性和可见性原子性（排他性）：不论是多核还是单核，具有原子性的量，同一时刻只能有一个线程来对它进行操作！可见性：多个线程对同一份数据操作，thread1改变了某个变量的值，要保证thread2能看见这个值被改变了。   static理解静态的，在程序执行的时候，就已经加载或执行。可修饰方法、变量、代码块。静态方法不能引用非静态的变量和方法。因为非静态的方法和变量只有在具体的实例存在才会相应的加载">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.cnblogs.com/cnblogs_com/aigongsi/201204/201204011757234696.jpg">
-<meta property="og:updated_time" content="2018-03-10T08:07:23.462Z">
+<meta property="og:image" content="http://p5ge4esf9.bkt.clouddn.com/images/1243982-20170929112445059-1759307071.jpg">
+<meta property="og:updated_time" content="2018-03-12T01:43:46.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="static、volatile、synchronize">
 <meta name="twitter:description" content="原子性和可见性原子性（排他性）：不论是多核还是单核，具有原子性的量，同一时刻只能有一个线程来对它进行操作！可见性：多个线程对同一份数据操作，thread1改变了某个变量的值，要保证thread2能看见这个值被改变了。   static理解静态的，在程序执行的时候，就已经加载或执行。可修饰方法、变量、代码块。静态方法不能引用非静态的变量和方法。因为非静态的方法和变量只有在具体的实例存在才会相应的加载">
-<meta name="twitter:image" content="http://images.cnblogs.com/cnblogs_com/aigongsi/201204/201204011757234696.jpg">
+<meta name="twitter:image" content="http://p5ge4esf9.bkt.clouddn.com/images/1243982-20170929112445059-1759307071.jpg">
 
 
 
@@ -389,7 +389,7 @@
 <a id="more"></a> 
 <p>同时被static修饰的成员变量和成员方法是独立于该类的，它不依赖于某个特定的实例变量，也就是说它被该类的所有实例共享。所有实例的引用都指向同一个地方，任何一个实例对其的修改都会导致其他实例的变化。每个实例指向的都是同一个堆地址区域，修改的都是同一块内存。保证了变量在该类所有的实例中的唯一性。  </p>
 <p><strong>static为什么不能保证线程安全？？？</strong><br>每个线程运行时都有一个线程栈，线程栈保存了线程运行时候变量值信息。当线程访问某一个对象时候值的时候，首先通过对象的引用找到对应在堆内存的变量的值，然后把堆内存变量的具体值load到线程本地内存中，建立一个变量副本，之后线程就不再和对象在堆内存变量值有任何关系，而是直接修改副本变量的值，在修改完之后的某一个时刻（线程退出之前），自动把线程变量副本的值回写到对象在堆中变量。这样在堆中的对象的值就产生变化了。</p>
-<p><img src="http://images.cnblogs.com/cnblogs_com/aigongsi/201204/201204011757234696.jpg" alt="变量一次写操作过程"><br>图片摘自：<a href="http://www.cnblogs.com/shangxiaofei/p/5564340.html" target="_blank" rel="noopener">http://www.cnblogs.com/shangxiaofei/p/5564340.html</a></p>
+<p><img src="http://p5ge4esf9.bkt.clouddn.com/images/1243982-20170929112445059-1759307071.jpg" alt="变量一次写操作过程"><br>图片摘自：<a href="http://www.cnblogs.com/shangxiaofei/p/5564340.html" target="_blank" rel="noopener">http://www.cnblogs.com/shangxiaofei/p/5564340.html</a></p>
 <p>这样就会导致多线程带来的问题，多个线程都从主内存私有拷贝变量到自己的工作区，a线程改变了var1的值，进行+1操作，还没写回到主内存。b线程这时看到自己的工作区中的var1值没变。这就是多线程带来的问题。  </p>
 <p>那么如何保证变量在多线程中的安全？（有人说可以声明为final类型，但是这样就是常量了。）</p>
 <h3 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h3><p>volatile,声明这个字段易变（可能被多个线程使用），Java内存模型负责各个线程的工作区与主存区的该字段的值保持同步，即一致性。<br> volatile禁止编译器对成员变量进行优化，被volatile声明的变量，多个线程在操作的时候，每改变其值的时候，jvm都强行要求其立刻写回主内存。每次使用其值的时候，都要求其从主内存重新拷贝。这样就保证了操作的可见性，但是并不能保证操作的原子性，多个线程仍然可以对其进行同时操作。在某种情况下，volatile还是不能保证线程的安全。<br>那么如何保证多线程的安全？</p>
@@ -429,7 +429,7 @@
   <p><span>本文标题:</span><a href="/2018/03/10/static、volatile、synchronize/">static、volatile、synchronize</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 xgeeek 的个人博客">xgeeek</a></p>
   <p><span>发布时间:</span>2018年03月10日 - 15:03</p>
-  <p><span>最后更新:</span>2018年03月10日 - 16:03</p>
+  <p><span>最后更新:</span>2018年03月12日 - 09:03</p>
   <p><span>原始链接:</span><a href="/2018/03/10/static、volatile、synchronize/" title="static、volatile、synchronize">http://www.xgeeek.com/2018/03/10/static、volatile、synchronize/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://www.xgeeek.com/2018/03/10/static、volatile、synchronize/"  aria-label="复制成功！"></i></span>
   </p>
