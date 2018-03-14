@@ -97,15 +97,17 @@
 <meta name="description" content="摘录部分内容有摘抄，原文链接未找到，如有侵权，请联系我。 维基百科简介超文本传输协议（英文：HyperText Transfer Protocol，缩写：HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。   设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。通过HTTP或者HTTPS协议请求的资源由统一资源标识符（Uniform R">
 <meta name="keywords" content="网络编程,HTTP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTTP全方位详解一">
+<meta property="og:title" content="HTTP详解（一）">
 <meta property="og:url" content="http://www.xgeeek.com/2018/03/14/http/index.html">
 <meta property="og:site_name" content="xgeeek">
 <meta property="og:description" content="摘录部分内容有摘抄，原文链接未找到，如有侵权，请联系我。 维基百科简介超文本传输协议（英文：HyperText Transfer Protocol，缩写：HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。   设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。通过HTTP或者HTTPS协议请求的资源由统一资源标识符（Uniform R">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-14T09:27:37.800Z">
+<meta property="og:image" content="http://p5ge4esf9.bkt.clouddn.com/images/http_Request.png">
+<meta property="og:updated_time" content="2018-03-14T13:47:33.992Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTTP全方位详解一">
+<meta name="twitter:title" content="HTTP详解（一）">
 <meta name="twitter:description" content="摘录部分内容有摘抄，原文链接未找到，如有侵权，请联系我。 维基百科简介超文本传输协议（英文：HyperText Transfer Protocol，缩写：HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。   设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。通过HTTP或者HTTPS协议请求的资源由统一资源标识符（Uniform R">
+<meta name="twitter:image" content="http://p5ge4esf9.bkt.clouddn.com/images/http_Request.png">
 
 
 
@@ -140,7 +142,7 @@
 
 
 
-  <title>HTTP全方位详解一 | xgeeek</title>
+  <title>HTTP详解（一） | xgeeek</title>
   
 
 
@@ -310,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HTTP全方位详解一</h1>
+          <h1 class="post-title" itemprop="name headline">HTTP详解（一）</h1>
         
 
         <div class="post-meta">
@@ -407,7 +409,7 @@
 <li><strong>无状态</strong>：HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。</li>
 <li>支持<strong>B/S</strong>及<strong>C/S</strong>模式。</li>
 </ol>
-<h3 id="Url、Uri"><a href="#Url、Uri" class="headerlink" title="Url、Uri"></a>Url、Uri</h3><p>####Url概述<br>HTTP使用统一资源标识符（<em>Uniform Resource Identifiers</em>, URI）来传输数据和建立连接。URL是一种特殊类型的URI，包含了用于查找某个资源的足够的信息<br>URL,全称是UniformResourceLocator, 中文叫统一资源定位符,是互联网上用来标识某一处资源的地址。以下面这个URL为例，介绍下普通URL的各部分组成：<br><a href="http://www.aspxfans.com:8080/news/index.asp?boardID=5&amp;ID=24618&amp;page=1#name" target="_blank" rel="noopener">http://www.aspxfans.com:8080/news/index.asp?boardID=5&amp;ID=24618&amp;page=1#name</a><br>从上面的URL可以看出，一个完整的URL包括以下几部分：  </p>
+<h3 id="Url、Uri"><a href="#Url、Uri" class="headerlink" title="Url、Uri"></a>Url、Uri</h3><h4 id="Url概述"><a href="#Url概述" class="headerlink" title="Url概述"></a>Url概述</h4><p>HTTP使用统一资源标识符（<em>Uniform Resource Identifiers</em>, URI）来传输数据和建立连接。URL是一种特殊类型的URI，包含了用于查找某个资源的足够的信息<br>URL,全称是UniformResourceLocator, 中文叫统一资源定位符,是互联网上用来标识某一处资源的地址。以下面这个URL为例，介绍下普通URL的各部分组成：<br><a href="http://www.aspxfans.com:8080/news/index.asp?boardID=5&amp;ID=24618&amp;page=1#name" target="_blank" rel="noopener">http://www.aspxfans.com:8080/news/index.asp?boardID=5&amp;ID=24618&amp;page=1#name</a><br>从上面的URL可以看出，一个完整的URL包括以下几部分：  </p>
 <ol>
 <li>协议部分：该URL的协议部分为“http：”，这代表网页使用的是HTTP协议。在Internet中可以使用多种协议，如HTTP，FTP等等本例中使用的是HTTP协议。在”HTTP”后面的“//”为分隔符  </li>
 <li>域名部分：该URL的域名部分为“<a href="http://www.aspxfans.com”。一个URL中，也可以使用IP地址作为域名使用" target="_blank" rel="noopener">www.aspxfans.com”。一个URL中，也可以使用IP地址作为域名使用</a>  </li>
@@ -417,8 +419,16 @@
 <li>锚部分：从“#”开始到最后，都是锚部分。本例中的锚部分是“name”。锚部分也不是一个URL必须的部分  </li>
 <li>参数部分：从“？”开始到“#”为止之间的部分为参数部分，又称搜索部分、查询部分。本例中的参数部分  为“boardID=5&amp;ID=24618&amp;page=1”。参数可以允许有多个参数，参数与参数之间用“&amp;”作为分隔符。<br><a href="http://blog.csdn.net/ergouge/article/details/8185219" target="_blank" rel="noopener">原文</a>   </li>
 </ol>
-<p>####URI和URL的区别URI<br>Uri是uniform resource identifier，统一资源标识符，用来唯一的标识一个资源。Web上可用的每种资源如HTML文档、图像、视频片段、程序等都是一个来URI来定位的<br>URI一般由三部组成：<br>①访问资源的命名机制<br>②存放资源的主机名<br>③资源自身的名称，由路径表示，着重强调于资源。<br>URL是uniform resource locator，统一资源定位器，它是一种具体的URI，即URL可以用来标识一个资源，而且还指明了如何locate这个资源。<br>URL是Internet上用来描述信息资源的字符串，主要用在各种WWW客户程序和服务器程序上，特别是著名的Mosaic。<br>采用URL可以用一种统一的格式来描述各种信息资源，包括文件、服务器的地址和目录等。<br>URL一般由三部组成：<br>①协议(或称为服务方式)<br>②存有该资源的主机IP地址(有时也包括端口号)<br>③主机资源的具体地址。<br>如目录和文件名等URN，uniform resource name，统一资源命名，是通过名字来标识资源，比如mailto:<a href="mailto:java-net@java.sun.com" target="_blank" rel="noopener">java-net@java.sun.com</a>。<br>URI是以一种抽象的，高层次概念定义统一资源标识，而URL和URN则是具体的资源标识的方式。URL和URN都是一种URI。笼统地说，每个 URL 都是 URI，但不一定每个 URI 都是 URL。这是因为 URI 还包括一个子类，即统一资源名称 (URN)，它命名资源但不指定如何定位资源。上面的 mailto、news 和 isbn URI 都是 URN 的示例。<br>在Java的URI中，一个URI实例可以代表绝对的，也可以是相对的，只要它符合URI的语法规则。而URL类则不仅符合语义，还包含了定位该资源的信息，因此它不能是相对的。<br>在Java类库中，URI类不包含任何访问资源的方法，它唯一的作用就是解析。<br>相反的是，URL类可以打开一个到达资源的流。</p>
-
+<h4 id="URI和URL的区别"><a href="#URI和URL的区别" class="headerlink" title="URI和URL的区别"></a>URI和URL的区别</h4><p><strong>Uri是uniform resource identifier，统一资源标识符，用来唯一的标识一个资源。</strong><br>Web上可用的每种资源如HTML文档、图像、视频片段、程序等都是一个来URI来定位的<br>URI一般由三部组成：<br>①访问资源的命名机制<br>②存放资源的主机名<br>③资源自身的名称，由路径表示，着重强调于资源。  </p>
+<p><strong>URL是uniform resource locator，统一资源定位器，它是一种具体的URI，即URL可以用来标识一个资源，而且还指明了如何locate这个资源。</strong>  </p>
+<p>URL是Internet上用来描述信息资源的字符串，主要用在各种WWW客户程序和服务器程序上，特别是著名的Mosaic。<br>采用URL可以用一种统一的格式来描述各种信息资源，包括文件、服务器的地址和目录等。URL一般由三部组成：<br>①协议(或称为服务方式)<br>②存有该资源的主机IP地址(有时也包括端口号)<br>③主机资源的具体地址。如目录和文件名等  </p>
+<p><strong>URN，uniform resource name，统一资源命名，是通过名字来标识资源，比如 mailto:<a href="mailto:java-net@java.sun.com" target="_blank" rel="noopener">java-net@java.sun.com</a>。</strong>  </p>
+<p>URI是以一种抽象的，高层次概念定义统一资源标识，而URL和URN则是具体的资源标识的方式。URL和URN都是一种URI。笼统地说，每个 URL 都是 URI，但不一定每个 URI 都是 URL。这是因为 URI 还包括一个子类，即统一资源名称 (URN)，它命名资源但不指定如何定位资源。上面的 mailto、news 和 isbn URI 都是 URN 的示例。  </p>
+<p>在Java的URI中，一个URI实例可以代表绝对的，也可以是相对的，只要它符合URI的语法规则。而URL类则不仅符合语义，还包含了定位该资源的信息，因此它不能是相对的。  </p>
+<p>在Java类库中，URI类不包含任何访问资源的方法，它唯一的作用就是解析。<br>相反的是，URL类可以打开一个到达资源的流。</p>
+<h3 id="HTTP-REQUEST"><a href="#HTTP-REQUEST" class="headerlink" title="HTTP REQUEST"></a>HTTP REQUEST</h3><p>我们看一下客户端发送一个http请求到服务端的请求消息结构的经典图例<br><img src="http://p5ge4esf9.bkt.clouddn.com/images/http_Request.png" alt="http请求结构"> </p>
+<p>我们可以将请求概括成<strong>请求行（request line）、请求头部（header）、空行、请求数据（data）这四个部分组成。接下来对这四个部分进行解析。</strong>  </p>
+<h4 id="请求行（request-line）"><a href="#请求行（request-line）" class="headerlink" title="请求行（request line）"></a>请求行（request line）</h4>
       
     </div>
     
@@ -451,11 +461,11 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/03/14/http/">HTTP全方位详解一</a></p>
+  <p><span>本文标题:</span><a href="/2018/03/14/http/">HTTP详解（一）</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 xgeeek 的个人博客">xgeeek</a></p>
   <p><span>发布时间:</span>2018年03月14日 - 10:03</p>
-  <p><span>最后更新:</span>2018年03月14日 - 17:03</p>
-  <p><span>原始链接:</span><a href="/2018/03/14/http/" title="HTTP全方位详解一">http://www.xgeeek.com/2018/03/14/http/</a>
+  <p><span>最后更新:</span>2018年03月14日 - 21:03</p>
+  <p><span>原始链接:</span><a href="/2018/03/14/http/" title="HTTP详解（一）">http://www.xgeeek.com/2018/03/14/http/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://www.xgeeek.com/2018/03/14/http/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
@@ -652,7 +662,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘录"><span class="nav-number">1.</span> <span class="nav-text">摘录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#维基百科"><span class="nav-number">2.</span> <span class="nav-text">维基百科</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协议概述"><span class="nav-number">2.2.</span> <span class="nav-text">协议概述</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">3.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Url、Uri"><span class="nav-number">4.</span> <span class="nav-text">Url、Uri</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘录"><span class="nav-number">1.</span> <span class="nav-text">摘录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#维基百科"><span class="nav-number">2.</span> <span class="nav-text">维基百科</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协议概述"><span class="nav-number">2.2.</span> <span class="nav-text">协议概述</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">3.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Url、Uri"><span class="nav-number">4.</span> <span class="nav-text">Url、Uri</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Url概述"><span class="nav-number">4.1.</span> <span class="nav-text">Url概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URI和URL的区别"><span class="nav-number">4.2.</span> <span class="nav-text">URI和URL的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-REQUEST"><span class="nav-number">5.</span> <span class="nav-text">HTTP REQUEST</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求行（request-line）"><span class="nav-number">5.1.</span> <span class="nav-text">请求行（request line）</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -698,7 +708,7 @@ busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共3.1k字</span>
+  <span class="post-count">博客全站共3.2k字</span>
 </div>
 
 
