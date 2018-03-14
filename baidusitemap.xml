@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://www.xgeeek.com/2018/03/14/http/</loc>
+    <lastmod>2018-03-14T09:17:04.265Z</lastmod>
+    <data>
+        <display>
+        <title>HTTP全方位详解一</title>
+        <pubTime>2018-03-14T02:31:33.000Z</pubTime>
+        
+        <tag>网络编程</tag>
+         
+        <tag>HTTP</tag>
+         
+         
+           
+             
+              <breadCrumb title="网络编程" url="http://www.xgeeek.com/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
+          
+             
+              <breadCrumb title="HTTP" url="http://www.xgeeek.com/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/HTTP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.xgeeek.com/2018/03/10/static%E3%80%81volatile%E3%80%81synchronize/</loc>
     <lastmod>2018-03-12T05:14:30.196Z</lastmod>
     <data>

@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java,thread,volatile,synchronize," />
+  <meta name="keywords" content="网络编程,HTTP," />
 
 
 
@@ -94,20 +94,18 @@
 
 
 
-<meta name="description" content="原子性和可见性原子性（排他性）：不论是多核还是单核，具有原子性的量，同一时刻只能有一个线程来对它进行操作！可见性：多个线程对同一份数据操作，thread1改变了某个变量的值，要保证thread2能看见这个值被改变了。">
-<meta name="keywords" content="java,thread,volatile,synchronize">
+<meta name="description" content="###摘录部分内容有摘抄，未标记原文链接的是实在没找到，如有侵权，请联系我。 维基百科简介超文本传输协议（英文：HyperText Transfer Protocol，缩写：HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。 设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。通过HTTP或者HTTPS协议请求的资源由统一资源标识符（U">
+<meta name="keywords" content="网络编程,HTTP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="static、volatile、synchronize">
-<meta property="og:url" content="http://www.xgeeek.com/2018/03/10/static、volatile、synchronize/index.html">
+<meta property="og:title" content="HTTP全方位详解一">
+<meta property="og:url" content="http://www.xgeeek.com/2018/03/14/http/index.html">
 <meta property="og:site_name" content="xgeeek">
-<meta property="og:description" content="原子性和可见性原子性（排他性）：不论是多核还是单核，具有原子性的量，同一时刻只能有一个线程来对它进行操作！可见性：多个线程对同一份数据操作，thread1改变了某个变量的值，要保证thread2能看见这个值被改变了。">
+<meta property="og:description" content="###摘录部分内容有摘抄，未标记原文链接的是实在没找到，如有侵权，请联系我。 维基百科简介超文本传输协议（英文：HyperText Transfer Protocol，缩写：HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。 设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。通过HTTP或者HTTPS协议请求的资源由统一资源标识符（U">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p5ge4esf9.bkt.clouddn.com/images/1243982-20170929112445059-1759307071.jpg">
-<meta property="og:updated_time" content="2018-03-12T05:14:30.196Z">
+<meta property="og:updated_time" content="2018-03-14T09:17:04.265Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="static、volatile、synchronize">
-<meta name="twitter:description" content="原子性和可见性原子性（排他性）：不论是多核还是单核，具有原子性的量，同一时刻只能有一个线程来对它进行操作！可见性：多个线程对同一份数据操作，thread1改变了某个变量的值，要保证thread2能看见这个值被改变了。">
-<meta name="twitter:image" content="http://p5ge4esf9.bkt.clouddn.com/images/1243982-20170929112445059-1759307071.jpg">
+<meta name="twitter:title" content="HTTP全方位详解一">
+<meta name="twitter:description" content="###摘录部分内容有摘抄，未标记原文链接的是实在没找到，如有侵权，请联系我。 维基百科简介超文本传输协议（英文：HyperText Transfer Protocol，缩写：HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。 设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。通过HTTP或者HTTPS协议请求的资源由统一资源标识符（U">
 
 
 
@@ -136,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://www.xgeeek.com/2018/03/10/static、volatile、synchronize/"/>
+  <link rel="canonical" href="http://www.xgeeek.com/2018/03/14/http/"/>
 
 
 
 
 
-  <title>static、volatile、synchronize | xgeeek</title>
+  <title>HTTP全方位详解一 | xgeeek</title>
   
 
 
@@ -295,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.xgeeek.com/2018/03/10/static、volatile、synchronize/">
+    <link itemprop="mainEntityOfPage" href="http://www.xgeeek.com/2018/03/14/http/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xgeeek">
@@ -312,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">static、volatile、synchronize</h1>
+          <h1 class="post-title" itemprop="name headline">HTTP全方位详解一</h1>
         
 
         <div class="post-meta">
@@ -324,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-10T15:58:39+08:00">
-                2018-03-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T10:31:33+08:00">
+                2018-03-14
               </time>
             
 
@@ -347,8 +345,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
                   </a>
                 </span>
 
@@ -358,8 +356,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/thread/" itemprop="url" rel="index">
-                    <span itemprop="name">thread</span>
+                  <a href="/categories/网络编程/HTTP/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP</span>
                   </a>
                 </span>
 
@@ -395,17 +393,31 @@
       
 
       
-        <h3 id="原子性和可见性"><a href="#原子性和可见性" class="headerlink" title="原子性和可见性"></a>原子性和可见性</h3><p>原子性（排他性）：不论是多核还是单核，具有原子性的量，同一时刻只能有一个线程来对它进行操作！<br>可见性：多个线程对同一份数据操作，thread1改变了某个变量的值，要保证thread2能看见这个值被改变了。  </p>
-<a id="more"></a> 
-<h3 id="static理解"><a href="#static理解" class="headerlink" title="static理解"></a>static理解</h3><p>静态的，在程序执行的时候，就已经加载或执行。<br>可修饰方法、变量、代码块。<br>静态方法不能引用非静态的变量和方法。因为非静态的方法和变量只有在具体的实例存在才会相应的加载。  </p>
-<p>同时被static修饰的成员变量和成员方法是独立于该类的，它不依赖于某个特定的实例变量，也就是说它被该类的所有实例共享。所有实例的引用都指向同一个地方，任何一个实例对其的修改都会导致其他实例的变化。每个实例指向的都是同一个堆地址区域，修改的都是同一块内存。保证了变量在该类所有的实例中的唯一性。  </p>
-<p><strong>static为什么不能保证线程安全？？？</strong><br>每个线程运行时都有一个线程栈，线程栈保存了线程运行时候变量值信息。当线程访问某一个对象时候值的时候，首先通过对象的引用找到对应在堆内存的变量的值，然后把堆内存变量的具体值load到线程本地内存中，建立一个变量副本，之后线程就不再和对象在堆内存变量值有任何关系，而是直接修改副本变量的值，在修改完之后的某一个时刻（线程退出之前），自动把线程变量副本的值回写到对象在堆中变量。这样在堆中的对象的值就产生变化了。</p>
-<p><img src="http://p5ge4esf9.bkt.clouddn.com/images/1243982-20170929112445059-1759307071.jpg" alt="变量一次写操作过程"><br>图片摘自：<a href="http://www.cnblogs.com/shangxiaofei/p/5564340.html" target="_blank" rel="noopener">http://www.cnblogs.com/shangxiaofei/p/5564340.html</a></p>
-<p>这样就会导致多线程带来的问题，多个线程都从主内存私有拷贝变量到自己的工作区，a线程改变了var1的值，进行+1操作，还没写回到主内存。b线程这时看到自己的工作区中的var1值没变。这就是多线程带来的问题。  </p>
-<p>那么如何保证变量在多线程中的安全？（有人说可以声明为final类型，但是这样就是常量了。）</p>
-<h3 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h3><p>volatile,声明这个字段易变（可能被多个线程使用），Java内存模型负责各个线程的工作区与主存区的该字段的值保持同步，即一致性。<br> volatile禁止编译器对成员变量进行优化，被volatile声明的变量，多个线程在操作的时候，每改变其值的时候，jvm都强行要求其立刻写回主内存。每次使用其值的时候，都要求其从主内存重新拷贝。这样就保证了操作的可见性，但是并不能保证操作的原子性，多个线程仍然可以对其进行同时操作。在某种情况下，volatile还是不能保证线程的安全。<br>那么如何保证多线程的安全？</p>
-<h3 id="synchronize"><a href="#synchronize" class="headerlink" title="synchronize"></a>synchronize</h3><p>建议看此篇<br><a href="http://www.cnblogs.com/GnagWang/archive/2011/02/27/1966606.html" target="_blank" rel="noopener">http://www.cnblogs.com/GnagWang/archive/2011/02/27/1966606.html</a></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>static只是声明变量在主存上的唯一性，不能保证工作区与主存区变量值的一致性；除非变量的值是不可变的，即再加上final的修饰符，否则static声明的变量，不是线程安全的。<br>volatile同步机制不同于synchronized,前者是内存同步，后者不仅包含内存同步（一致性），且保证线程互斥（互斥性）。<br>synchronized：其实就像加了锁一样，只能等待这个线程操作完变量，并且把变量值同步到堆（主内存后），释放锁；然后其他线程才可以读写。<br>ReentrantLock：ReentrantLock多了锁投票，定时锁等候，中断锁等候；synchronized锁不能被打断；竞争激烈的时候，使用此锁，效率更高些。</p>
+        <p>###摘录<br>部分内容有摘抄，未标记原文链接的是实在没找到，如有侵权，请联系我。</p>
+<h3 id="维基百科"><a href="#维基百科" class="headerlink" title="维基百科"></a>维基百科</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>超文本传输协议（英文：HyperText Transfer Protocol，缩写：HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。</p>
+<p>设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。通过HTTP或者HTTPS协议请求的资源由统一资源标识符（Uniform Resource Identifiers，URI）来标识。<br><a id="more"></a><br>HTTP的发展是由蒂姆·伯纳斯-李于1989年在欧洲核子研究组织（CERN）所发起。HTTP的标准制定由万维网协会（World Wide Web Consortium，W3C）和互联网工程任务组（Internet Engineering Task Force，IETF）进行协调，最终发布了一系列的RFC，其中最著名的是1999年6月公布的 RFC 2616，定义了HTTP协议中现今广泛使用的一个版本——HTTP 1.1。</p>
+<p>2014年12月，互联网工程任务组（IETF）的Hypertext Transfer Protocol Bis（httpbis）工作小组将HTTP/2标准提议递交至IESG进行讨论，于2015年2月17日被批准。HTTP/2标准于2015年5月以RFC 7540正式发表，取代HTTP 1.1成为HTTP的实现标准。</p>
+<h4 id="协议概述"><a href="#协议概述" class="headerlink" title="协议概述"></a>协议概述</h4><p>HTTP是一个客户端终端（用户）和服务器端（网站）请求和应答的标准（<strong>TCP</strong>）。通过使用网页浏览器、网络爬虫或者其它的工具，客户端发起一个HTTP请求到服务器上指定端口（默认端口为80）。我们称这个客户端为用户代理程序（<strong>user agent</strong>）。应答的服务器上存储着一些资源，比如HTML文件和图像。我们称这个应答服务器为源服务器（origin server）。在用户代理和源服务器中间可能存在多个“中间层”，比如代理服务器、网关或者隧道（tunnel）。</p>
+<p>尽管<strong>TCP/IP</strong>协议是互联网上最流行的应用，HTTP协议中，并没有规定必须使用它或它支持的层。事实上，HTTP可以在任何互联网协议上，或其他网络上实现。HTTP假定其下层协议提供可靠的传输。因此，任何能够提供这种保证的协议都可以被其使用。因此也就是其在TCP/IP协议族使用TCP作为其传输层。</p>
+<p>通常，由HTTP客户端发起一个请求，创建一个到服务器指定端口（默认是80端口）的TCP连接。HTTP服务器则在那个端口监听客户端的请求。一旦收到请求，服务器会向客户端返回一个状态，比如”HTTP/1.1 200 OK”，以及返回的内容，如请求的文件、错误消息、或者其它信息。</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ol>
+<li>简单快速：客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、POST。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。</li>
+<li>灵活：HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。</li>
+<li>无连接：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。</li>
+<li>无状态：HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。</li>
+<li>支持B/S及C/S模式。</li>
+</ol>
+<h3 id="Url、Uri"><a href="#Url、Uri" class="headerlink" title="Url、Uri"></a>Url、Uri</h3><p>####Url概述<br>HTTP使用统一资源标识符（Uniform Resource Identifiers, URI）来传输数据和建立连接。URL是一种特殊类型的URI，包含了用于查找某个资源的足够的信息<br>URL,全称是UniformResourceLocator, 中文叫统一资源定位符,是互联网上用来标识某一处资源的地址。以下面这个URL为例，介绍下普通URL的各部分组成：<br><a href="http://www.aspxfans.com:8080/news/index.asp?boardID=5&amp;ID=24618&amp;page=1#name" target="_blank" rel="noopener">http://www.aspxfans.com:8080/news/index.asp?boardID=5&amp;ID=24618&amp;page=1#name</a><br>从上面的URL可以看出，一个完整的URL包括以下几部分：  </p>
+<ol>
+<li>协议部分：该URL的协议部分为“http：”，这代表网页使用的是HTTP协议。在Internet中可以使用多种协议，如HTTP，FTP等等本例中使用的是HTTP协议。在”HTTP”后面的“//”为分隔符  </li>
+<li>域名部分：该URL的域名部分为“<a href="http://www.aspxfans.com”。一个URL中，也可以使用IP地址作为域名使用" target="_blank" rel="noopener">www.aspxfans.com”。一个URL中，也可以使用IP地址作为域名使用</a>  </li>
+<li>端口部分：跟在域名后面的是端口，域名和端口之间使用“:”作为分隔符。端口不是一个URL必须的部分，如果省略端口部分，将采用默认端口  </li>
+<li>虚拟目录部分：从域名后的第一个“/”开始到最后一个“/”为止，是虚拟目录部分。虚拟目录也不是一个URL必须的部分。本例中的虚拟目录是“/news/”  </li>
+<li>文件名部分：从域名后的最后一个“/”开始到“？”为止，是文件名部分，如果没有“?”,则是从域名后的最后一个“/”开始到“#”为止，是文件部分，如果没有“？”和“#”，那么从域名后的最后一个“/”开始到结束，都是文件名部分。本例中的文件名是“index.asp”。文件名部分也不是一个URL必须的部分，如果省略该部分，则使用默认的文件名  </li>
+<li>锚部分：从“#”开始到最后，都是锚部分。本例中的锚部分是“name”。锚部分也不是一个URL必须的部分  </li>
+<li>参数部分：从“？”开始到“#”为止之间的部分为参数部分，又称搜索部分、查询部分。本例中的参数部分  为“boardID=5&amp;ID=24618&amp;page=1”。参数可以允许有多个参数，参数与参数之间用“&amp;”作为分隔符。<br><a href="http://blog.csdn.net/ergouge/article/details/8185219" target="_blank" rel="noopener">原文</a>   </li>
+</ol>
+<p>####URI和URL的区别URI<br>Uri是uniform resource identifier，统一资源标识符，用来唯一的标识一个资源。Web上可用的每种资源如HTML文档、图像、视频片段、程序等都是一个来URI来定位的<br>URI一般由三部组成：<br>①访问资源的命名机制<br>②存放资源的主机名<br>③资源自身的名称，由路径表示，着重强调于资源。<br>URL是uniform resource locator，统一资源定位器，它是一种具体的URI，即URL可以用来标识一个资源，而且还指明了如何locate这个资源。<br>URL是Internet上用来描述信息资源的字符串，主要用在各种WWW客户程序和服务器程序上，特别是著名的Mosaic。<br>采用URL可以用一种统一的格式来描述各种信息资源，包括文件、服务器的地址和目录等。<br>URL一般由三部组成：<br>①协议(或称为服务方式)<br>②存有该资源的主机IP地址(有时也包括端口号)<br>③主机资源的具体地址。<br>如目录和文件名等URN，uniform resource name，统一资源命名，是通过名字来标识资源，比如mailto:<a href="mailto:java-net@java.sun.com" target="_blank" rel="noopener">java-net@java.sun.com</a>。<br>URI是以一种抽象的，高层次概念定义统一资源标识，而URL和URN则是具体的资源标识的方式。URL和URN都是一种URI。笼统地说，每个 URL 都是 URI，但不一定每个 URI 都是 URL。这是因为 URI 还包括一个子类，即统一资源名称 (URN)，它命名资源但不指定如何定位资源。上面的 mailto、news 和 isbn URI 都是 URN 的示例。<br>在Java的URI中，一个URI实例可以代表绝对的，也可以是相对的，只要它符合URI的语法规则。而URL类则不仅符合语义，还包含了定位该资源的信息，因此它不能是相对的。<br>在Java类库中，URI类不包含任何访问资源的方法，它唯一的作用就是解析。<br>相反的是，URL类可以打开一个到达资源的流。</p>
 
       
     </div>
@@ -423,13 +435,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+            <a href="/tags/网络编程/" rel="tag"><i class="fa fa-tag"></i> 网络编程</a>
           
-            <a href="/tags/thread/" rel="tag"><i class="fa fa-tag"></i> thread</a>
-          
-            <a href="/tags/volatile/" rel="tag"><i class="fa fa-tag"></i> volatile</a>
-          
-            <a href="/tags/synchronize/" rel="tag"><i class="fa fa-tag"></i> synchronize</a>
+            <a href="/tags/HTTP/" rel="tag"><i class="fa fa-tag"></i> HTTP</a>
           
         </div>
       
@@ -443,12 +451,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/03/10/static、volatile、synchronize/">static、volatile、synchronize</a></p>
+  <p><span>本文标题:</span><a href="/2018/03/14/http/">HTTP全方位详解一</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 xgeeek 的个人博客">xgeeek</a></p>
-  <p><span>发布时间:</span>2018年03月10日 - 15:03</p>
-  <p><span>最后更新:</span>2018年03月12日 - 13:03</p>
-  <p><span>原始链接:</span><a href="/2018/03/10/static、volatile、synchronize/" title="static、volatile、synchronize">http://www.xgeeek.com/2018/03/10/static、volatile、synchronize/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://www.xgeeek.com/2018/03/10/static、volatile、synchronize/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年03月14日 - 10:03</p>
+  <p><span>最后更新:</span>2018年03月14日 - 17:03</p>
+  <p><span>原始链接:</span><a href="/2018/03/14/http/" title="HTTP全方位详解一">http://www.xgeeek.com/2018/03/14/http/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://www.xgeeek.com/2018/03/14/http/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -477,15 +485,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/03/10/static、volatile、synchronize/" rel="next" title="static、volatile、synchronize">
+                <i class="fa fa-chevron-left"></i> static、volatile、synchronize
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/14/http/" rel="prev" title="HTTP全方位详解一">
-                HTTP全方位详解一 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -644,7 +652,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原子性和可见性"><span class="nav-number">1.</span> <span class="nav-text">原子性和可见性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#static理解"><span class="nav-number">2.</span> <span class="nav-text">static理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#volatile"><span class="nav-number">3.</span> <span class="nav-text">volatile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronize"><span class="nav-number">4.</span> <span class="nav-text">synchronize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#维基百科"><span class="nav-number">1.</span> <span class="nav-text">维基百科</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协议概述"><span class="nav-number">1.2.</span> <span class="nav-text">协议概述</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Url、Uri"><span class="nav-number">3.</span> <span class="nav-text">Url、Uri</span></a></li></ol></div>
             
 
           </div>
