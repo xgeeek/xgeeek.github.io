@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="xgeeek">
 <meta property="og:description" content="常见消息头部断点续传 断点续传的实现非常简单，只要在请求中加一个Range字段就可以了。  假如一个文件有1000个字节，那么其范围就是0-999，则：   Range: bytes=500-          表示读取该文件的500-999字节，共500字节。   Range: bytes=500-599    表示读取该文件的500-599字节，共100字节。  Range还有其它几种写法，但">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-19T13:35:43.961Z">
+<meta property="og:updated_time" content="2018-03-19T13:38:31.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP详解（二）">
 <meta name="twitter:description" content="常见消息头部断点续传 断点续传的实现非常简单，只要在请求中加一个Range字段就可以了。  假如一个文件有1000个字节，那么其范围就是0-999，则：   Range: bytes=500-          表示读取该文件的500-999字节，共500字节。   Range: bytes=500-599    表示读取该文件的500-599字节，共100字节。  Range还有其它几种写法，但">
@@ -397,8 +397,7 @@
 <p> Range: bytes=500-          表示读取该文件的500-999字节，共500字节。 </p>
 <p> Range: bytes=500-599    表示读取该文件的500-599字节，共100字节。 </p>
 <p>Range还有其它几种写法，但上面这两种是最常用的，对于断点续传也足矣了。如果HTTP请求中包含Range字段，那么服务器会返回206（Partial Content），同时HTTP头中也会有一个相应的Content-Range字段，类似下面的格式：</p>
-<p><strong>Content-Range: bytes 500-999/1000</strong></p>
-<p>Content-Range字段说明服务器返回了文件的某个范围及文件的总长度。这时Content-Length字段就不是整个文件的大小了，而是对应文件这个范围的字节数，这一点一定要注意。</p>
+<p><strong>Content-Range: bytes 500-999/1000</strong><br><a id="more"></a><br>Content-Range字段说明服务器返回了文件的某个范围及文件的总长度。这时Content-Length字段就不是整个文件的大小了，而是对应文件这个范围的字节数，这一点一定要注意。</p>
 <h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p>很多软件下载网站的文件下载链接都是通过程序重定向的，比如pchome的ACDSee的HTTP下载地址是：<br><a href="http://download.pchome.net/php/tdownload2.php?sid=5547&amp;url=/multimedia/viewer/acdc31sr1b051007.exe&amp;svr=1&amp;typ=0" target="_blank" rel="noopener">http://download.pchome.net/php/tdownload2.php?sid=5547&amp;url=/multimedia/viewer/acdc31sr1b051007.exe&amp;svr=1&amp;typ=0</a> </p>
 <p>这种地址并没有直接标识文件的位置，而是通过程序进行了重定向。如果向服务器请求这样的URL，服务器就会返回<strong>302（Moved Temporarily）</strong>，意思就是需要重定向，同时在HTTP头中会包含一个Location字段，Location字段的值就是重定向后的目的URL。这时就需要断开当前的连接，而向这个重定向后的服务器发请求。</p>
 <h3 id="HttpClient和HttpUrlConnection"><a href="#HttpClient和HttpUrlConnection" class="headerlink" title="HttpClient和HttpUrlConnection"></a>HttpClient和HttpUrlConnection</h3><h4 id="HttpClient"><a href="#HttpClient" class="headerlink" title="HttpClient"></a>HttpClient</h4><p>Apache公司提供的库，提供高效的、最新的、功能丰富的支持HTTP协议工具包，支持HTTP协议最新的版本和建议，是个很不错的开源框架，封装了Http的请求，参数，内容体，响应等，拥有众多API。</p>
@@ -519,8 +518,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/15/gradle、gradle-plugin-versionq/" rel="next" title="gradle、gradle plugin versionq">
-                <i class="fa fa-chevron-left"></i> gradle、gradle plugin versionq
+              <a href="/2018/03/15/gradle、gradle-plugin-version/" rel="next" title="gradle和gradle plugin version详解">
+                <i class="fa fa-chevron-left"></i> gradle和gradle plugin version详解
               </a>
             
           </div>
@@ -616,7 +615,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -627,7 +626,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

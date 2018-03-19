@@ -4,8 +4,33 @@
 
     
   <url>
+    <loc>http://www.xgeeek.com/2018/03/15/gradle%E3%80%81gradle-plugin-version/</loc>
+    <lastmod>2018-03-19T13:40:14.509Z</lastmod>
+    <data>
+        <display>
+        <title>gradle和gradle plugin version详解</title>
+        <pubTime>2018-03-15T03:15:11.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>studio</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://www.xgeeek.com/categories/Android/"/>
+          
+             
+              <breadCrumb title="studio" url="http://www.xgeeek.com/categories/Android/studio/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.xgeeek.com/2018/03/19/http2/</loc>
-    <lastmod>2018-03-19T13:35:43.961Z</lastmod>
+    <lastmod>2018-03-19T13:38:31.061Z</lastmod>
     <data>
         <display>
         <title>HTTP详解（二）</title>
@@ -48,21 +73,6 @@
              
               <breadCrumb title="HTTP" url="http://www.xgeeek.com/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/HTTP/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.xgeeek.com/2018/03/15/gradle%E3%80%81gradle-plugin-versionq/</loc>
-    <lastmod>2018-03-15T03:15:11.396Z</lastmod>
-    <data>
-        <display>
-        <title>gradle、gradle plugin versionq</title>
-        <pubTime>2018-03-15T03:15:11.000Z</pubTime>
-        
-         
-           
         </display>
     </data>
     </url>

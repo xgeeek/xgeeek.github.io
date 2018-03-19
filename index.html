@@ -396,68 +396,18 @@
 
       
         
-          
-            <h3 id="常见消息头部"><a href="#常见消息头部" class="headerlink" title="常见消息头部"></a>常见消息头部</h3><h4 id="断点续传"><a href="#断点续传" class="headerlink" title="断点续传"></a>断点续传</h4><p> 断点续传的实现非常简单，只要在请求中加一个Range字段就可以了。  假如一个文件有1000个字节，那么其范围就是0-999，则： </p>
+          <h3 id="常见消息头部"><a href="#常见消息头部" class="headerlink" title="常见消息头部"></a>常见消息头部</h3><h4 id="断点续传"><a href="#断点续传" class="headerlink" title="断点续传"></a>断点续传</h4><p> 断点续传的实现非常简单，只要在请求中加一个Range字段就可以了。  假如一个文件有1000个字节，那么其范围就是0-999，则： </p>
 <p> Range: bytes=500-          表示读取该文件的500-999字节，共500字节。 </p>
 <p> Range: bytes=500-599    表示读取该文件的500-599字节，共100字节。 </p>
 <p>Range还有其它几种写法，但上面这两种是最常用的，对于断点续传也足矣了。如果HTTP请求中包含Range字段，那么服务器会返回206（Partial Content），同时HTTP头中也会有一个相应的Content-Range字段，类似下面的格式：</p>
-<p><strong>Content-Range: bytes 500-999/1000</strong></p>
-<p>Content-Range字段说明服务器返回了文件的某个范围及文件的总长度。这时Content-Length字段就不是整个文件的大小了，而是对应文件这个范围的字节数，这一点一定要注意。</p>
-<h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p>很多软件下载网站的文件下载链接都是通过程序重定向的，比如pchome的ACDSee的HTTP下载地址是：<br><a href="http://download.pchome.net/php/tdownload2.php?sid=5547&amp;url=/multimedia/viewer/acdc31sr1b051007.exe&amp;svr=1&amp;typ=0" target="_blank" rel="noopener">http://download.pchome.net/php/tdownload2.php?sid=5547&amp;url=/multimedia/viewer/acdc31sr1b051007.exe&amp;svr=1&amp;typ=0</a> </p>
-<p>这种地址并没有直接标识文件的位置，而是通过程序进行了重定向。如果向服务器请求这样的URL，服务器就会返回<strong>302（Moved Temporarily）</strong>，意思就是需要重定向，同时在HTTP头中会包含一个Location字段，Location字段的值就是重定向后的目的URL。这时就需要断开当前的连接，而向这个重定向后的服务器发请求。</p>
-<h3 id="HttpClient和HttpUrlConnection"><a href="#HttpClient和HttpUrlConnection" class="headerlink" title="HttpClient和HttpUrlConnection"></a>HttpClient和HttpUrlConnection</h3><h4 id="HttpClient"><a href="#HttpClient" class="headerlink" title="HttpClient"></a>HttpClient</h4><p>Apache公司提供的库，提供高效的、最新的、功能丰富的支持HTTP协议工具包，支持HTTP协议最新的版本和建议，是个很不错的开源框架，封装了Http的请求，参数，内容体，响应等，拥有众多API。</p>
-<p>HttpClient的主要功能：  </p>
-<ol>
-<li>实现了所有 HTTP 的方法（GET,POST,PUT,HEAD 等）；  </li>
-<li>支持自动转向；  </li>
-<li>支持 HTTPS 协议；  </li>
-<li>支持代理服务器等。  </li>
-</ol>
-<h5 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h5><p>jdk、网络。</p>
-<ol>
-<li>commons-httpclient-3.1.jar： 包括Http协议所需的类。</li>
-<li>commons-logging-1.1.jar： 包括记录程序运行时的活动日志记录的类。  </li>
-<li>commons-codec-1.3.jar： 包括编码解码的类。<br>以上都是Apache的开源项目，可以在<a href="http://www.apache.org/" target="_blank" rel="noopener">Appache开源组织官网</a>上找到。</li>
-</ol>
-<h5 id="HttpClient通信"><a href="#HttpClient通信" class="headerlink" title="HttpClient通信"></a>HttpClient通信</h5><ol>
-<li>初始化客户端<br>HttpClient client = new HttpClient();</li>
-<li>实例化一个请求方法<br>HttpMethod method = new GetMethod(“<a href="http://www.baidu.com&quot;)" target="_blank" rel="noopener">http://www.baidu.com&quot;)</a>;</li>
-<li>添加需要的消息头部<br>method.addRequestHeader(“Range”,”bytes=500-“);</li>
-<li>发出请求<br>int statusCode = client.executeMethod(method);</li>
-<li>statusCode即为向服务器发出请求后，返回的状态码。还可以<br>通过method获取。method.getStatusCode();<br>注： 在HttpClient的包中有一个名为”HttpStatus”类，其中定义了大多数的状态码。  </li>
-<li>响应头部<br>Header[] headers = method.getResponseHeaders(); //获取所有响应头部。<br>Header header = method.getResponseHeader(“Content-Type”); //获取指定头部header.getName()、header.getValue()来得到相关信息。</li>
-<li>响应正文<br>byte[] bytes = method.getResponseBody();<br>InputStream inputStream = method.getResponseBodyAsStream();<br>String string = method.getResponseBodyAsString();  </li>
-<li>断开链接<br>method.releaseConnection();</li>
-<li>其他常用<br>a、POST数据。<br>POST请求和GET请求大致相同，唯一需要注意的是，如何在POST信息中加入自己所需传输的信息。  </li>
-</ol>
-<p>postMethod.setRequestBody(InputStream body);  </p>
-<p>postMethod.setRequestBody(NameValuePair[]   parameterBody);  </p>
-<p>postMethod.setRequestBody(String body);  </p>
-<p>b、代理服务器。<br>只需指定httpClient的实例的代理就可以了，基于此实例的所有操作将经由此代理。<br>httpClient.getHostConfiguration().setProxy(hostName,port);</p>
-<p>c、字符编码。</p>
-<p>某目标页的编码可能出现在两个地方：</p>
-<p>第一个地方是服务器返回的http头中（RequestHeader的Content-Type、Content-Encoding字段）；</p>
-<p>另外一个地方是得到的html/xml页面中。如：</p>
-<p><meta http-equiv="Content-Type" content="text/html; charset=gb2312"><br>或者 &lt;?xml version=”1.0” encoding=”gb2312”?&gt;</p>
-<p>d、自动跳转。</p>
-<p>HttpClient对GET请求可实现自动跳转。但是对于POST和PUT请求要求接受后继服务的，暂不支持自动跳转。</p>
-<p>当服务器返回的状态代码为3××时，需要根据消息报头的“Location”字段的地址来实现跳转。注意，“Location”字段的地址可能是相对地址，需要自己进行处理。</p>
-<p>还有一种可能就是在页面中实现的跳转。例如，在HTML中，<meta http-equiv="refresh" content="5; url=http://www.ibm.com/us">。</p>
-<h4 id="HttpUrlConnection"><a href="#HttpUrlConnection" class="headerlink" title="HttpUrlConnection"></a>HttpUrlConnection</h4><p>看一下这两篇详解  </p>
-<ol>
-<li><a href="http://blog.csdn.net/woxueliuyun/article/details/43267365" target="_blank" rel="noopener">详解HttpURLConnection</a>  </li>
-<li><a href="http://blog.csdn.net/fightingXia/article/details/71775516" target="_blank" rel="noopener">HttpUrlConnection使用详解</a></li>
-</ol>
-<h4 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a>如何选择</h4><p>额外知识点：<br>Http 1.0与1.1的区别<br>最主要的区别就是连接时，在1.0中只能1个单独的连接只能处理1次请求，1.1中可以执行多个请求，并且多个请求可以叠加而不用等待一个请求结束再发送下一个请求。</p>
-<p>Android 6.0中已经抛弃了HttpClient转而使用OkHttp。</p>
-<p>功能上<br>Http Client适用于web浏览器，拥有大量灵活的API，实现起来比较稳定，且其功能比较丰富，提供了很多工具，封装了http的请求头，参数，内容体，响应，还有一些高级功能，代理、COOKIE、鉴权、压缩、连接池的处理。</p>
-<p>但是，正因此，在不破坏兼容性的前提下，其庞大的API也使人难以改进，因此Android团队对于修改优化Apache Http Client并不积极。(并在Android 6.0中抛弃了Http Client，替换成OkHttp)<br>HttpURLConnection对于大部分功能都进行了包装，Http Client的高级功能代码会较复杂，另外，HttpURLConnection在Android 2.3中增加了一些Https方面的改进(包括Http Client，两者都支持https)。且在Android 4.0中增加了response cache。</p>
-<p>性能上<br>　　<br>HttpURLConnection直接支持GZIP压缩，默认添加”Accept-Encoding: gzip”头字段到请求中，并处理相应的回应，而Http Client虽然支持，但需要自己写代码处理。</p>
-<p>注意：但在2.3中，由于Http的Content-Length头字段返回的是压缩后的大小，直接使用getContentLength()方法得到的数据大小是错误的，应该使用InputStream.read()直到返回值是-1为止。<br>HttpURLConnection直接在系统层面做了缓存策略处理(Android 4.0以上)，Http请求将在以下三种中选择：<br>　　<br>1、完全的cache的response将直接从本地存储中获取。因为不需要网络连接，此类response可以立即得到。<br>　　<br>2、有条件cache的response必须在Web服务器验证一下cache的有效性。客户端发送一个请求，比如“如果/foo.png从昨天起有变化则给我新的图片” , 服务端的response要么是更新后的内容，要么是304 没有修改状态码。如果内容是没有改变的，就不需要下载了。<br>　　<br>3、没有cache的response将从服务器上获取。得到这些response之后会存储到cache以便将来使用。<br>　　<br>这篇文章中对两者的速度做了一个对比，做法是两个类都使用默认的方法去请求百度的网页内容，测试结果是使用httpurlconnection耗时47ms，使用httpclient耗时641ms。httpURLConnection在速度有比较明显的优势，当然这跟压缩内容和缓存都有直接关系。</p>
-<p>选用HttpURLConnect是一个通用的、适合大多数应用的轻量级组件。这个类起步比较晚，很容易在主要API上做稳步的改善。但是HttpURLConnection在在Android 2.2及以下版本上存在一些令人厌烦的bug，尤其是在读取 InputStream时调用 close()方法，就有可能会导致连接池失效了。</p>
-<p>　　<br>因此，在2.2之前的版本，Http Client会是一个比较好的选择，而自2.3起，HttpURLConnection将是最佳选择，其API简单，小巧，非常适合于Android。透明的压缩及response cache减少了网络流量，改进了网络速度，也就更省电。<br>　　<br>在Volley框架的源码中，会发现它在Http请求的使用上也是如此，在Android 2.3及以上的版本，使用的是HttpURLConnection，而在Android 2.2及以下版本，使用的是HttpClient。</p>
-
-          
+<p><strong>Content-Range: bytes 500-999/1000</strong><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/19/http2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -508,7 +458,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.xgeeek.com/2018/03/15/gradle、gradle-plugin-versionq/">
+    <link itemprop="mainEntityOfPage" href="http://www.xgeeek.com/2018/03/15/gradle、gradle-plugin-version/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xgeeek">
@@ -527,7 +477,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/15/gradle、gradle-plugin-versionq/" itemprop="url">gradle、gradle plugin versionq</a></h1>
+                <a class="post-title-link" href="/2018/03/15/gradle、gradle-plugin-version/" itemprop="url">gradle和gradle plugin version详解</a></h1>
         
 
         <div class="post-meta">
@@ -549,6 +499,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  >
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/studio/" itemprop="url" rel="index">
+                    <span itemprop="name">studio</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -998,7 +981,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1009,7 +992,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
