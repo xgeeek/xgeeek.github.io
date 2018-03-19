@@ -396,11 +396,11 @@
 
       
         
-          <h3 id="常见消息头部"><a href="#常见消息头部" class="headerlink" title="常见消息头部"></a>常见消息头部</h3><h4 id="断点续传"><a href="#断点续传" class="headerlink" title="断点续传"></a>断点续传</h4><p> 断点续传的实现非常简单，只要在请求中加一个Range字段就可以了。  假如一个文件有1000个字节，那么其范围就是0-999，则： </p>
-<p> Range: bytes=500-          表示读取该文件的500-999字节，共500字节。 </p>
-<p> Range: bytes=500-599    表示读取该文件的500-599字节，共100字节。 </p>
+          <h3 id="常见消息头部"><a href="#常见消息头部" class="headerlink" title="常见消息头部"></a>常见消息头部</h3><h4 id="断点续传"><a href="#断点续传" class="headerlink" title="断点续传"></a>断点续传</h4><p>断点续传的实现非常简单，只要在请求中加一个Range字段就可以了。  假如一个文件有1000个字节，那么其范围就是0-999，则： </p>
+<p> Range: bytes=500- 表示读取该文件的500-999字节，共500字节。 </p>
+<p> Range: bytes=500-599 表示读取该文件的500-599字节，共100字节。 </p>
 <p>Range还有其它几种写法，但上面这两种是最常用的，对于断点续传也足矣了。如果HTTP请求中包含Range字段，那么服务器会返回206（Partial Content），同时HTTP头中也会有一个相应的Content-Range字段，类似下面的格式：</p>
-<p><strong>Content-Range: bytes 500-999/1000</strong><br>
+<p><strong>Content-Range: bytes 500-999/1000</strong></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/19/http2/#more" rel="contents">
