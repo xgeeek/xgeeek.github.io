@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java,thread,volatile,synchronize," />
+  <meta name="keywords" content="网络编程,HTTP," />
 
 
 
@@ -94,20 +94,18 @@
 
 
 
-<meta name="description" content="原子性和可见性原子性（排他性）：不论是多核还是单核，具有原子性的量，同一时刻只能有一个线程来对它进行操作！可见性：多个线程对同一份数据操作，thread1改变了某个变量的值，要保证thread2能看见这个值被改变了。">
-<meta name="keywords" content="java,thread,volatile,synchronize">
+<meta name="description" content="常见消息头部断点续传 断点续传的实现非常简单，只要在请求中加一个Range字段就可以了。  假如一个文件有1000个字节，那么其范围就是0-999，则：   Range: bytes=500-          表示读取该文件的500-999字节，共500字节。   Range: bytes=500-599    表示读取该文件的500-599字节，共100字节。  Range还有其它几种写法，但">
+<meta name="keywords" content="网络编程,HTTP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="static、volatile、synchronize">
-<meta property="og:url" content="http://www.xgeeek.com/2018/03/10/static、volatile、synchronize/index.html">
+<meta property="og:title" content="HTTP详解（二）">
+<meta property="og:url" content="http://www.xgeeek.com/2018/03/19/http2/index.html">
 <meta property="og:site_name" content="xgeeek">
-<meta property="og:description" content="原子性和可见性原子性（排他性）：不论是多核还是单核，具有原子性的量，同一时刻只能有一个线程来对它进行操作！可见性：多个线程对同一份数据操作，thread1改变了某个变量的值，要保证thread2能看见这个值被改变了。">
+<meta property="og:description" content="常见消息头部断点续传 断点续传的实现非常简单，只要在请求中加一个Range字段就可以了。  假如一个文件有1000个字节，那么其范围就是0-999，则：   Range: bytes=500-          表示读取该文件的500-999字节，共500字节。   Range: bytes=500-599    表示读取该文件的500-599字节，共100字节。  Range还有其它几种写法，但">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p5ge4esf9.bkt.clouddn.com/images/1243982-20170929112445059-1759307071.jpg">
-<meta property="og:updated_time" content="2018-03-12T05:14:30.196Z">
+<meta property="og:updated_time" content="2018-03-19T13:35:43.961Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="static、volatile、synchronize">
-<meta name="twitter:description" content="原子性和可见性原子性（排他性）：不论是多核还是单核，具有原子性的量，同一时刻只能有一个线程来对它进行操作！可见性：多个线程对同一份数据操作，thread1改变了某个变量的值，要保证thread2能看见这个值被改变了。">
-<meta name="twitter:image" content="http://p5ge4esf9.bkt.clouddn.com/images/1243982-20170929112445059-1759307071.jpg">
+<meta name="twitter:title" content="HTTP详解（二）">
+<meta name="twitter:description" content="常见消息头部断点续传 断点续传的实现非常简单，只要在请求中加一个Range字段就可以了。  假如一个文件有1000个字节，那么其范围就是0-999，则：   Range: bytes=500-          表示读取该文件的500-999字节，共500字节。   Range: bytes=500-599    表示读取该文件的500-599字节，共100字节。  Range还有其它几种写法，但">
 
 
 
@@ -136,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://www.xgeeek.com/2018/03/10/static、volatile、synchronize/"/>
+  <link rel="canonical" href="http://www.xgeeek.com/2018/03/19/http2/"/>
 
 
 
 
 
-  <title>static、volatile、synchronize | xgeeek</title>
+  <title>HTTP详解（二） | xgeeek</title>
   
 
 
@@ -295,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.xgeeek.com/2018/03/10/static、volatile、synchronize/">
+    <link itemprop="mainEntityOfPage" href="http://www.xgeeek.com/2018/03/19/http2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xgeeek">
@@ -312,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">static、volatile、synchronize</h1>
+          <h1 class="post-title" itemprop="name headline">HTTP详解（二）</h1>
         
 
         <div class="post-meta">
@@ -324,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-10T15:58:39+08:00">
-                2018-03-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-19T20:40:47+08:00">
+                2018-03-19
               </time>
             
 
@@ -347,8 +345,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
+                  <a href="/categories/网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">网络编程</span>
                   </a>
                 </span>
 
@@ -358,8 +356,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/thread/" itemprop="url" rel="index">
-                    <span itemprop="name">thread</span>
+                  <a href="/categories/网络编程/HTTP/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP</span>
                   </a>
                 </span>
 
@@ -395,17 +393,65 @@
       
 
       
-        <h3 id="原子性和可见性"><a href="#原子性和可见性" class="headerlink" title="原子性和可见性"></a>原子性和可见性</h3><p>原子性（排他性）：不论是多核还是单核，具有原子性的量，同一时刻只能有一个线程来对它进行操作！<br>可见性：多个线程对同一份数据操作，thread1改变了某个变量的值，要保证thread2能看见这个值被改变了。  </p>
-<a id="more"></a> 
-<h3 id="static理解"><a href="#static理解" class="headerlink" title="static理解"></a>static理解</h3><p>静态的，在程序执行的时候，就已经加载或执行。<br>可修饰方法、变量、代码块。<br>静态方法不能引用非静态的变量和方法。因为非静态的方法和变量只有在具体的实例存在才会相应的加载。  </p>
-<p>同时被static修饰的成员变量和成员方法是独立于该类的，它不依赖于某个特定的实例变量，也就是说它被该类的所有实例共享。所有实例的引用都指向同一个地方，任何一个实例对其的修改都会导致其他实例的变化。每个实例指向的都是同一个堆地址区域，修改的都是同一块内存。保证了变量在该类所有的实例中的唯一性。  </p>
-<p><strong>static为什么不能保证线程安全？？？</strong><br>每个线程运行时都有一个线程栈，线程栈保存了线程运行时候变量值信息。当线程访问某一个对象时候值的时候，首先通过对象的引用找到对应在堆内存的变量的值，然后把堆内存变量的具体值load到线程本地内存中，建立一个变量副本，之后线程就不再和对象在堆内存变量值有任何关系，而是直接修改副本变量的值，在修改完之后的某一个时刻（线程退出之前），自动把线程变量副本的值回写到对象在堆中变量。这样在堆中的对象的值就产生变化了。</p>
-<p><img src="http://p5ge4esf9.bkt.clouddn.com/images/1243982-20170929112445059-1759307071.jpg" alt="变量一次写操作过程"><br>图片摘自：<a href="http://www.cnblogs.com/shangxiaofei/p/5564340.html" target="_blank" rel="noopener">http://www.cnblogs.com/shangxiaofei/p/5564340.html</a></p>
-<p>这样就会导致多线程带来的问题，多个线程都从主内存私有拷贝变量到自己的工作区，a线程改变了var1的值，进行+1操作，还没写回到主内存。b线程这时看到自己的工作区中的var1值没变。这就是多线程带来的问题。  </p>
-<p>那么如何保证变量在多线程中的安全？（有人说可以声明为final类型，但是这样就是常量了。）</p>
-<h3 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h3><p>volatile,声明这个字段易变（可能被多个线程使用），Java内存模型负责各个线程的工作区与主存区的该字段的值保持同步，即一致性。<br> volatile禁止编译器对成员变量进行优化，被volatile声明的变量，多个线程在操作的时候，每改变其值的时候，jvm都强行要求其立刻写回主内存。每次使用其值的时候，都要求其从主内存重新拷贝。这样就保证了操作的可见性，但是并不能保证操作的原子性，多个线程仍然可以对其进行同时操作。在某种情况下，volatile还是不能保证线程的安全。<br>那么如何保证多线程的安全？</p>
-<h3 id="synchronize"><a href="#synchronize" class="headerlink" title="synchronize"></a>synchronize</h3><p>建议看此篇<br><a href="http://www.cnblogs.com/GnagWang/archive/2011/02/27/1966606.html" target="_blank" rel="noopener">http://www.cnblogs.com/GnagWang/archive/2011/02/27/1966606.html</a></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>static只是声明变量在主存上的唯一性，不能保证工作区与主存区变量值的一致性；除非变量的值是不可变的，即再加上final的修饰符，否则static声明的变量，不是线程安全的。<br>volatile同步机制不同于synchronized,前者是内存同步，后者不仅包含内存同步（一致性），且保证线程互斥（互斥性）。<br>synchronized：其实就像加了锁一样，只能等待这个线程操作完变量，并且把变量值同步到堆（主内存后），释放锁；然后其他线程才可以读写。<br>ReentrantLock：ReentrantLock多了锁投票，定时锁等候，中断锁等候；synchronized锁不能被打断；竞争激烈的时候，使用此锁，效率更高些。</p>
+        <h3 id="常见消息头部"><a href="#常见消息头部" class="headerlink" title="常见消息头部"></a>常见消息头部</h3><h4 id="断点续传"><a href="#断点续传" class="headerlink" title="断点续传"></a>断点续传</h4><p> 断点续传的实现非常简单，只要在请求中加一个Range字段就可以了。  假如一个文件有1000个字节，那么其范围就是0-999，则： </p>
+<p> Range: bytes=500-          表示读取该文件的500-999字节，共500字节。 </p>
+<p> Range: bytes=500-599    表示读取该文件的500-599字节，共100字节。 </p>
+<p>Range还有其它几种写法，但上面这两种是最常用的，对于断点续传也足矣了。如果HTTP请求中包含Range字段，那么服务器会返回206（Partial Content），同时HTTP头中也会有一个相应的Content-Range字段，类似下面的格式：</p>
+<p><strong>Content-Range: bytes 500-999/1000</strong></p>
+<p>Content-Range字段说明服务器返回了文件的某个范围及文件的总长度。这时Content-Length字段就不是整个文件的大小了，而是对应文件这个范围的字节数，这一点一定要注意。</p>
+<h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p>很多软件下载网站的文件下载链接都是通过程序重定向的，比如pchome的ACDSee的HTTP下载地址是：<br><a href="http://download.pchome.net/php/tdownload2.php?sid=5547&amp;url=/multimedia/viewer/acdc31sr1b051007.exe&amp;svr=1&amp;typ=0" target="_blank" rel="noopener">http://download.pchome.net/php/tdownload2.php?sid=5547&amp;url=/multimedia/viewer/acdc31sr1b051007.exe&amp;svr=1&amp;typ=0</a> </p>
+<p>这种地址并没有直接标识文件的位置，而是通过程序进行了重定向。如果向服务器请求这样的URL，服务器就会返回<strong>302（Moved Temporarily）</strong>，意思就是需要重定向，同时在HTTP头中会包含一个Location字段，Location字段的值就是重定向后的目的URL。这时就需要断开当前的连接，而向这个重定向后的服务器发请求。</p>
+<h3 id="HttpClient和HttpUrlConnection"><a href="#HttpClient和HttpUrlConnection" class="headerlink" title="HttpClient和HttpUrlConnection"></a>HttpClient和HttpUrlConnection</h3><h4 id="HttpClient"><a href="#HttpClient" class="headerlink" title="HttpClient"></a>HttpClient</h4><p>Apache公司提供的库，提供高效的、最新的、功能丰富的支持HTTP协议工具包，支持HTTP协议最新的版本和建议，是个很不错的开源框架，封装了Http的请求，参数，内容体，响应等，拥有众多API。</p>
+<p>HttpClient的主要功能：  </p>
+<ol>
+<li>实现了所有 HTTP 的方法（GET,POST,PUT,HEAD 等）；  </li>
+<li>支持自动转向；  </li>
+<li>支持 HTTPS 协议；  </li>
+<li>支持代理服务器等。  </li>
+</ol>
+<h5 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h5><p>jdk、网络。</p>
+<ol>
+<li>commons-httpclient-3.1.jar： 包括Http协议所需的类。</li>
+<li>commons-logging-1.1.jar： 包括记录程序运行时的活动日志记录的类。  </li>
+<li>commons-codec-1.3.jar： 包括编码解码的类。<br>以上都是Apache的开源项目，可以在<a href="http://www.apache.org/" target="_blank" rel="noopener">Appache开源组织官网</a>上找到。</li>
+</ol>
+<h5 id="HttpClient通信"><a href="#HttpClient通信" class="headerlink" title="HttpClient通信"></a>HttpClient通信</h5><ol>
+<li>初始化客户端<br>HttpClient client = new HttpClient();</li>
+<li>实例化一个请求方法<br>HttpMethod method = new GetMethod(“<a href="http://www.baidu.com&quot;)" target="_blank" rel="noopener">http://www.baidu.com&quot;)</a>;</li>
+<li>添加需要的消息头部<br>method.addRequestHeader(“Range”,”bytes=500-“);</li>
+<li>发出请求<br>int statusCode = client.executeMethod(method);</li>
+<li>statusCode即为向服务器发出请求后，返回的状态码。还可以<br>通过method获取。method.getStatusCode();<br>注： 在HttpClient的包中有一个名为”HttpStatus”类，其中定义了大多数的状态码。  </li>
+<li>响应头部<br>Header[] headers = method.getResponseHeaders(); //获取所有响应头部。<br>Header header = method.getResponseHeader(“Content-Type”); //获取指定头部header.getName()、header.getValue()来得到相关信息。</li>
+<li>响应正文<br>byte[] bytes = method.getResponseBody();<br>InputStream inputStream = method.getResponseBodyAsStream();<br>String string = method.getResponseBodyAsString();  </li>
+<li>断开链接<br>method.releaseConnection();</li>
+<li>其他常用<br>a、POST数据。<br>POST请求和GET请求大致相同，唯一需要注意的是，如何在POST信息中加入自己所需传输的信息。  </li>
+</ol>
+<p>postMethod.setRequestBody(InputStream body);  </p>
+<p>postMethod.setRequestBody(NameValuePair[]   parameterBody);  </p>
+<p>postMethod.setRequestBody(String body);  </p>
+<p>b、代理服务器。<br>只需指定httpClient的实例的代理就可以了，基于此实例的所有操作将经由此代理。<br>httpClient.getHostConfiguration().setProxy(hostName,port);</p>
+<p>c、字符编码。</p>
+<p>某目标页的编码可能出现在两个地方：</p>
+<p>第一个地方是服务器返回的http头中（RequestHeader的Content-Type、Content-Encoding字段）；</p>
+<p>另外一个地方是得到的html/xml页面中。如：</p>
+<p><meta http-equiv="Content-Type" content="text/html; charset=gb2312"><br>或者 &lt;?xml version=”1.0” encoding=”gb2312”?&gt;</p>
+<p>d、自动跳转。</p>
+<p>HttpClient对GET请求可实现自动跳转。但是对于POST和PUT请求要求接受后继服务的，暂不支持自动跳转。</p>
+<p>当服务器返回的状态代码为3××时，需要根据消息报头的“Location”字段的地址来实现跳转。注意，“Location”字段的地址可能是相对地址，需要自己进行处理。</p>
+<p>还有一种可能就是在页面中实现的跳转。例如，在HTML中，<meta http-equiv="refresh" content="5; url=http://www.ibm.com/us">。</p>
+<h4 id="HttpUrlConnection"><a href="#HttpUrlConnection" class="headerlink" title="HttpUrlConnection"></a>HttpUrlConnection</h4><p>看一下这两篇详解  </p>
+<ol>
+<li><a href="http://blog.csdn.net/woxueliuyun/article/details/43267365" target="_blank" rel="noopener">详解HttpURLConnection</a>  </li>
+<li><a href="http://blog.csdn.net/fightingXia/article/details/71775516" target="_blank" rel="noopener">HttpUrlConnection使用详解</a></li>
+</ol>
+<h4 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a>如何选择</h4><p>额外知识点：<br>Http 1.0与1.1的区别<br>最主要的区别就是连接时，在1.0中只能1个单独的连接只能处理1次请求，1.1中可以执行多个请求，并且多个请求可以叠加而不用等待一个请求结束再发送下一个请求。</p>
+<p>Android 6.0中已经抛弃了HttpClient转而使用OkHttp。</p>
+<p>功能上<br>Http Client适用于web浏览器，拥有大量灵活的API，实现起来比较稳定，且其功能比较丰富，提供了很多工具，封装了http的请求头，参数，内容体，响应，还有一些高级功能，代理、COOKIE、鉴权、压缩、连接池的处理。</p>
+<p>但是，正因此，在不破坏兼容性的前提下，其庞大的API也使人难以改进，因此Android团队对于修改优化Apache Http Client并不积极。(并在Android 6.0中抛弃了Http Client，替换成OkHttp)<br>HttpURLConnection对于大部分功能都进行了包装，Http Client的高级功能代码会较复杂，另外，HttpURLConnection在Android 2.3中增加了一些Https方面的改进(包括Http Client，两者都支持https)。且在Android 4.0中增加了response cache。</p>
+<p>性能上<br>　　<br>HttpURLConnection直接支持GZIP压缩，默认添加”Accept-Encoding: gzip”头字段到请求中，并处理相应的回应，而Http Client虽然支持，但需要自己写代码处理。</p>
+<p>注意：但在2.3中，由于Http的Content-Length头字段返回的是压缩后的大小，直接使用getContentLength()方法得到的数据大小是错误的，应该使用InputStream.read()直到返回值是-1为止。<br>HttpURLConnection直接在系统层面做了缓存策略处理(Android 4.0以上)，Http请求将在以下三种中选择：<br>　　<br>1、完全的cache的response将直接从本地存储中获取。因为不需要网络连接，此类response可以立即得到。<br>　　<br>2、有条件cache的response必须在Web服务器验证一下cache的有效性。客户端发送一个请求，比如“如果/foo.png从昨天起有变化则给我新的图片” , 服务端的response要么是更新后的内容，要么是304 没有修改状态码。如果内容是没有改变的，就不需要下载了。<br>　　<br>3、没有cache的response将从服务器上获取。得到这些response之后会存储到cache以便将来使用。<br>　　<br>这篇文章中对两者的速度做了一个对比，做法是两个类都使用默认的方法去请求百度的网页内容，测试结果是使用httpurlconnection耗时47ms，使用httpclient耗时641ms。httpURLConnection在速度有比较明显的优势，当然这跟压缩内容和缓存都有直接关系。</p>
+<p>选用HttpURLConnect是一个通用的、适合大多数应用的轻量级组件。这个类起步比较晚，很容易在主要API上做稳步的改善。但是HttpURLConnection在在Android 2.2及以下版本上存在一些令人厌烦的bug，尤其是在读取 InputStream时调用 close()方法，就有可能会导致连接池失效了。</p>
+<p>　　<br>因此，在2.2之前的版本，Http Client会是一个比较好的选择，而自2.3起，HttpURLConnection将是最佳选择，其API简单，小巧，非常适合于Android。透明的压缩及response cache减少了网络流量，改进了网络速度，也就更省电。<br>　　<br>在Volley框架的源码中，会发现它在Http请求的使用上也是如此，在Android 2.3及以上的版本，使用的是HttpURLConnection，而在Android 2.2及以下版本，使用的是HttpClient。</p>
 
       
     </div>
@@ -423,13 +469,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+            <a href="/tags/网络编程/" rel="tag"><i class="fa fa-tag"></i> 网络编程</a>
           
-            <a href="/tags/thread/" rel="tag"><i class="fa fa-tag"></i> thread</a>
-          
-            <a href="/tags/volatile/" rel="tag"><i class="fa fa-tag"></i> volatile</a>
-          
-            <a href="/tags/synchronize/" rel="tag"><i class="fa fa-tag"></i> synchronize</a>
+            <a href="/tags/HTTP/" rel="tag"><i class="fa fa-tag"></i> HTTP</a>
           
         </div>
       
@@ -443,12 +485,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/03/10/static、volatile、synchronize/">static、volatile、synchronize</a></p>
+  <p><span>本文标题:</span><a href="/2018/03/19/http2/">HTTP详解（二）</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 xgeeek 的个人博客">xgeeek</a></p>
-  <p><span>发布时间:</span>2018年03月10日 - 15:03</p>
-  <p><span>最后更新:</span>2018年03月12日 - 13:03</p>
-  <p><span>原始链接:</span><a href="/2018/03/10/static、volatile、synchronize/" title="static、volatile、synchronize">http://www.xgeeek.com/2018/03/10/static、volatile、synchronize/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://www.xgeeek.com/2018/03/10/static、volatile、synchronize/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年03月19日 - 20:03</p>
+  <p><span>最后更新:</span>2018年03月19日 - 21:03</p>
+  <p><span>原始链接:</span><a href="/2018/03/19/http2/" title="HTTP详解（二）">http://www.xgeeek.com/2018/03/19/http2/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://www.xgeeek.com/2018/03/19/http2/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -477,15 +519,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/03/15/gradle、gradle-plugin-versionq/" rel="next" title="gradle、gradle plugin versionq">
+                <i class="fa fa-chevron-left"></i> gradle、gradle plugin versionq
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/14/http/" rel="prev" title="HTTP详解（一）">
-                HTTP详解（一） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -644,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原子性和可见性"><span class="nav-number">1.</span> <span class="nav-text">原子性和可见性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#static理解"><span class="nav-number">2.</span> <span class="nav-text">static理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#volatile"><span class="nav-number">3.</span> <span class="nav-text">volatile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronize"><span class="nav-number">4.</span> <span class="nav-text">synchronize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见消息头部"><span class="nav-number">1.</span> <span class="nav-text">常见消息头部</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#断点续传"><span class="nav-number">1.1.</span> <span class="nav-text">断点续传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重定向"><span class="nav-number">1.2.</span> <span class="nav-text">重定向</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HttpClient和HttpUrlConnection"><span class="nav-number">2.</span> <span class="nav-text">HttpClient和HttpUrlConnection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpClient"><span class="nav-number">2.1.</span> <span class="nav-text">HttpClient</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#搭建环境"><span class="nav-number">2.1.1.</span> <span class="nav-text">搭建环境</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HttpClient通信"><span class="nav-number">2.1.2.</span> <span class="nav-text">HttpClient通信</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpUrlConnection"><span class="nav-number">2.2.</span> <span class="nav-text">HttpUrlConnection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何选择"><span class="nav-number">2.3.</span> <span class="nav-text">如何选择</span></a></li></ol></li></ol></div>
             
 
           </div>
